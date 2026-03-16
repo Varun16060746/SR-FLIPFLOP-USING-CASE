@@ -35,35 +35,47 @@ The maximum possible groupings of adjacent ones are already shown in the figure.
 **Procedure**
 
 /* write all the steps invloved */
+1.Type the program in Quartus software.
+2.Compile and run the program.
+3.Generate the RTL schematic and save the logic diagram.
+4.Create nodes for inputs and outputs to generate the timing diagram.
+5.For different input combinations generate the timing diagram.
 
 **PROGRAM**
 
-/* Program for flipflops and verify its truth table in quartus using Verilog programming.
-```
-module experiment6(S,R,c1k,Q,Qbar);
-input S,R,c1k;
-output reg Q;
-output reg Qbar;
-initial Q=0;
-initial Qbar=1;
-always @(posedge c1k)
-begin
-Q=S|((~R)&Q);
-Qbar=R|((~S)&(Qbar));
-end
+/* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by: VARUN A RegisterNumber:212224050057
+*/
+~~~
+module exp6(q, q_bar, s,r, clk, reset);
+  input s,r,clk, reset;
+  output reg q;
+  output q_bar;
+ 
+  always@(posedge clk) begin 
+    if(!reset)       
+			q <= 0;
+    else 
+  begin
+      case({s,r})       
+	     2'b00: ; 
+        2'b01:q<=1'b0;   
+        2'b10:q<=1'b1;   
+        2'b11:q<= q;   
+      endcase
+    end
+  end
+  assign q_bar = ~q;
 endmodule
-```
-Developed by: Varun A
 
-RegisterNumber:212224050057
-
+~~~
 **RTL LOGIC FOR FLIPFLOPS**
+<img width="1192" height="567" alt="image" src="https://github.com/user-attachments/assets/9db9665b-bfa4-4a2d-96c5-9face203c966" />
 
-![Screenshot 2024-12-03 102502](https://github.com/user-attachments/assets/57fd1a8b-62f8-4e0c-865c-0c304afbff82)
 
 **TIMING DIGRAMS FOR FLIP FLOPS**
+<img width="1600" height="334" alt="image" src="https://github.com/user-attachments/assets/8ef6301d-d1da-4092-b314-0cbb95000278" />
 
-![Screenshot 2024-12-03 102800](https://github.com/user-attachments/assets/7af7941a-8673-4498-b7c2-d43f2ee677a1)
 
 **RESULTS**
-Thus the SR flipflop implemented successfully and truth table has verified
+SR flipflop using verilog and validating their functionality using their functional tables are verified.
+
